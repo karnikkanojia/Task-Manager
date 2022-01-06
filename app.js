@@ -2,14 +2,11 @@ const express = require('express');
 const app = express()
 const port = 3000;
 const tasks = require('./routes/tasks');
-const { connectDB } = require('./db/connect');
+const connectDB = require('./db/connect');
 require('dotenv').config();
 
+app.use(express.static('./public'));
 app.use(express.json());
-
-app.get('/', (req, res) => {
-    res.end("Hello World");
-});
 
 app.use('/api/v1/tasks', tasks);
 
