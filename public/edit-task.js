@@ -11,10 +11,9 @@ let tempName
 const showTask = async () => {
   try {
     const {
-      data: { task },
-    } = await axios.get(`/api/v1/tasks/${id}`)
+      data: task,
+    } = await axios.get(`/api/v1/tasks/${id}`);
     const { _id: taskID, completed, name } = task
-
     taskIDDOM.textContent = taskID
     taskNameDOM.value = name
     tempName = name
@@ -36,13 +35,12 @@ editFormDOM.addEventListener('submit', async (e) => {
     const taskCompleted = taskCompletedDOM.checked
 
     const {
-      data: { task },
+      data: task,
     } = await axios.patch(`/api/v1/tasks/${id}`, {
       name: taskName,
       completed: taskCompleted,
     })
-
-    const { _id: taskID, completed, name } = task
+    const { _id: taskID, completed, name } = task.task;
 
     taskIDDOM.textContent = taskID
     taskNameDOM.value = name
